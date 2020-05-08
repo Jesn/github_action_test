@@ -1,0 +1,27 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  dockerId: hi35618568@aliyun.com                  # 阿里云 login username
+  namespace: mkm                              # 阿里云 命名空间
+  imageName: github-action-test                        # 阿里云 仓库名称
+  registry: registry.cn-shanghai.aliyuncs.com   # 阿里云 公网地址
+  dockerfilepath:  WebApplication1/Dockerfile       # Github Dockerfile相对路径
+
+
+steps:
+- script: |
+    docker build -f $(dockerfilepath) -t $(imageName) .
+    docker login -u $(dockerId) -p $(pwd) $(registry)
+    docker tag $(imageName) $(registry)/$(namespace)/$(imageName)
+    docker push $(registry)/$(namespace)/$(imageName)
+  displayName: push to aliyun
