@@ -1,0 +1,29 @@
+name: .NET Core
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+    - name: Docker Build & Push to Docker Hub
+      uses: jesn/github-action-test
+      with:
+        args: --docker
+      env:
+        USERNAME: ${{secrets.DOCKER_USERNAME}}
+        PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        DOCKERFILE: "Dockerfile"
+        IMAGE_NAME: "jesn/github-action-test"
+        TAG_NAME: "V0.0.1"
+        LASTEST: "TRUE"
