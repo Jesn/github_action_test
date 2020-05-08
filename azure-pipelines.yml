@@ -24,4 +24,4 @@ steps:
     docker login -u $(dockerId) -p $(pwd) $(registry)
     docker tag $(imageName) $(registry)/$(namespace)/$(imageName)
     docker push $(registry)/$(namespace)/$(imageName)
-    displayName: push to aliyun
+  displayName: push to aliyun
