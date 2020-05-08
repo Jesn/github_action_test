@@ -17,7 +17,7 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Docker Build & Push to Docker Hub
-      uses: jesn/github-action-test@master
+      uses: registry.cn-shanghai.aliyuncs.com/mkm/github-action-test@master
       with:
         args: --docker
       env:
