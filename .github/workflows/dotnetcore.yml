@@ -1,30 +1,18 @@
-name: .NET Core
-
+name: Publish Docker image
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
 jobs:
-  docker:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.101
-    - name: Docker Build & Push to Docker Hub
-      uses: registry.cn-shanghai.aliyuncs.com/mkm/github-action-test@master
-      with:
-        args: --docker
-      env:
-        username: ${{secrets.ALIYUN_USERNAME}}
-        password: ${{secrets.ALIYUN_PASSWORD}}
-        registry: registry.cn-shanghai.aliyuncs.com
-        DOCKERFILE: "Dockerfile"
-        IMAGE_NAME: "mkm/github-action-test"
-        TAG_NAME: "V0.0.1"
-        LASTEST: "TRUE"
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Push to Docker Hub
+        uses: mkm/github-action-test
+        with:
+          username: ${{secrets.ALIYUN_USERNAME}}
+          password: ${{secrets.ALIYUN_PASSWORD}}
+          repository: registry.cn-shanghai.aliyuncs.com
+          tag_with_ref: true
