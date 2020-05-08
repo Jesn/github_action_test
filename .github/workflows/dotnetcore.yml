@@ -21,9 +21,10 @@ jobs:
       with:
         args: --docker
       env:
-        USERNAME: ${{secrets.DOCKER_USERNAME}}
-        PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        username: ${{secrets.ALIYUN_USERNAME}}
+        password: ${{secrets.ALIYUN_PASSWORD}}
+        registry: registry.cn-shanghai.aliyuncs.com
         DOCKERFILE: "Dockerfile"
-        IMAGE_NAME: "jesn/github-action-test"
+        IMAGE_NAME: "mkm/github-action-test"
         TAG_NAME: "V0.0.1"
         LASTEST: "TRUE"
