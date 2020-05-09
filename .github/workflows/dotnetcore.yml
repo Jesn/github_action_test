@@ -10,9 +10,12 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: Push to Docker Hub
-        uses: registry.cn-shanghai.aliyuncs.com/mkm/github-action-test@master
+        uses: docker/build-push-action@v1
         with:
-          username: ${{secrets.ALIYUN_USERNAME}}
-          password: ${{secrets.ALIYUN_PASSWORD}}
-          repository: registry.cn-shanghai.aliyuncs.com
+          username: ${{ secrets.ALIYUN_USERNAME }}
+          password: ${{ secrets.ALIYUN_PASSWORD }}
+          registry: registry.cn-shanghai.aliyuncs.com
+          repository: mkm/github-action
           tag_with_ref: true
+          tag_with_sha: true
+          
