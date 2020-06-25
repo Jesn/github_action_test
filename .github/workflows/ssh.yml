@@ -13,4 +13,4 @@ jobs:
             command: ls -a
             host: 47.100.24.97
             username: root
-            passphrase: Zhengbolove@621218
+            password : Zhengbolove@621218
