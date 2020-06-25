@@ -7,10 +7,4 @@ jobs:
     name: Push Docker image to Aliyun Docker Hub
     runs-on: ubuntu-latest
     steps:
-        - name: ls -a via ssh
-          uses: garygrossgarten/github-action-ssh@release
-          with:
-            command: ls -a
-            host: 47.100.24.97
-            username: root
-            password : Zhengbolove@621218
+      - 
