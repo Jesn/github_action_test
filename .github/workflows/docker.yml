@@ -4,7 +4,7 @@ on:
     branches: [ master ]
 jobs:
   push_to_registry:
-    name: Push Docker image to Aliyun Docker Hub
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -17,8 +17,6 @@ jobs:
           registry: registry.cn-shanghai.aliyuncs.com
           dockerfile: ./github_action_test/Dockerfile
           repository: mkm/github-action
-          tag_with_ref: true
-          tag_with_sha: true
       - name: Push to  Docker Hub Console
         uses: docker/build-push-action@v1
         with:
