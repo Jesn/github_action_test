@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - name: Push to Docker Hub
+      - name: Push to Aliyun Docker Console
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.ALIYUN_USERNAME }}
@@ -19,4 +19,11 @@ jobs:
           repository: mkm/github-action
           tag_with_ref: true
           tag_with_sha: true
-          
+      - name: Push to  Docker Hub Console
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DockerHub_USERNAME }}
+          password: ${{ secrets.DockerHub_PASSWORD }}
+          dockerfile: ./github_action_test/Dockerfile
+          repository: geekosh/github_action
+          tags: github,test,github action
