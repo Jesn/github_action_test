@@ -24,4 +24,3 @@ jobs:
           password: ${{ secrets.DockerHub_PASSWORD }}
           dockerfile: ./github_action_test/Dockerfile
           repository: geekosh/github_action
-          tags: github,test,github action
